@@ -1,0 +1,31 @@
+FROM php:7.2-cli-buster
+
+# Add and extract SAP Netweaver RFC SDK.
+ADD sapnwrfc-sdk-7.50.tar.gz /usr/sap/nwrfcsdk/
+
+# Add Gregor Kraliks SAP Netweaver RFC module source code for PHP 7 to
+# /usr/src/1.3.0.tar.gz
+ADD https://github.com/gkralik/php7-sapnwrfc/archive/1.3.0.tar.gz /usr/src/
+
+RUN set -xe; \
+    docker-php-source extract; \
+    # SAP netweaver RFC SDK should be installed...
+    echo "/usr/sap/nwrfcsdk/lib" > /etc/ld.so.conf.d/sapnwrfc.conf; \
+    ldconfig; \
+    cd /usr/src; \
+    # Extract the module sources.
+    tar xzf 1.3.0.tar.gz; \
+    cd php7-sapnwrfc-1.3.0; \
+    # Configure and build the moudule.
+    phpize; \
+    ./configure --with-sapnwrfc=/usr/sap/nwrfcsdk; \
+    make; \
+    make install; \
+    cd ..; \
+    # cleanup
+    rm -Rf php7-sapnwrfc-1.3.0/ 1.3.0.tar.gz; \
+    docker-php-source delete; \
+    # Enable freshly compiled SAP Netweaver RFC module.
+    # How to enable PHP modules depends on your *nix flavor.
+    # The official PHP 7 docker images do it this way.
+    docker-php-ext-enable sapnwrfc;
