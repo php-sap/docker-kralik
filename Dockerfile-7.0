@@ -4,7 +4,7 @@ FROM php:7.0-cli-stretch
 ADD sapnwrfc-sdk-7.50.tar.gz /usr/sap/nwrfcsdk/
 
 # Version of Gregor Kraliks SAP Netweaver RFC module source code for PHP 7
-ARG SAPNWRFC_VERSION=1.3.0
+ARG SAPNWRFC_VERSION=805ad009d7d14f6e6dda35519ef5164de91a743d
 
 RUN set -xe; \
     docker-php-source extract; \
