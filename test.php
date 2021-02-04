@@ -5,6 +5,7 @@
 if (!extension_loaded('sapnwrfc')) {
     throw new RuntimeException('PHP module sapnwrfc not loaded!');
 }
+printf('PHP module sapnwrfc version: %s%s', phpversion('sapnwrfc'), PHP_EOL);
 $configFile = __DIR__ . DIRECTORY_SEPARATOR . 'sap.json';
 /**
  * Determine whether the config file exists or not.
