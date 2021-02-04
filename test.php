@@ -1,7 +1,13 @@
 <?php
+/**
+ * Check if extension is loaded.
+ */
+if (!extension_loaded('sapnwrfc')) {
+    throw new RuntimeException('PHP module sapnwrfc not loaded!');
+}
 $configFile = __DIR__ . DIRECTORY_SEPARATOR . 'sap.json';
 /**
- * Determine whether the file exists or not.
+ * Determine whether the config file exists or not.
  */
 if (file_exists($configFile) !== true) {
     throw new RuntimeException(sprintf(
