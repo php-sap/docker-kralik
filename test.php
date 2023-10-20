@@ -35,7 +35,9 @@ if (!is_array($config)) {
 /**
  * Create connection instance to SAP using the config.
  */
+echo 'Creating connection ... ';
 $connection = new \SAPNWRFC\Connection($config);
+echo 'OK.' . PHP_EOL;
 /**
  * First test: Call RFC_PING to see if remote function calls work.
  */
