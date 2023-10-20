@@ -31,6 +31,14 @@ docker build --pull --build-arg PHP_VERSION=7.3-cli --tag sapnwrfc:php-7.3 .
 docker build --pull --build-arg PHP_VERSION=7.4-cli --tag sapnwrfc:php-7.4 .
 docker build --pull --build-arg PHP_VERSION=8.1-cli --tag sapnwrfc:php-8.1 .
 docker build --pull --build-arg PHP_VERSION=8.2-cli --tag sapnwrfc:php-8.2 .
+docker build --pull --build-arg PHP_VERSION=8.1-cli --build-arg SAPNWRFC_VERSION=2.0.0-beta3 --tag sapnwrfc2:php-8.1 .
+docker build --pull --build-arg PHP_VERSION=8.2-cli --build-arg SAPNWRFC_VERSION=2.0.0-beta3 --tag sapnwrfc2:php-8.2 .
+```
+
+Example call for version 2 module:
+
+```shell
+docker run --rm -v "$(pwd)":/app --workdir /app sapnwrfc2:php-8.2 php test.php
 ```
 
 ## Annotations
