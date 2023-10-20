@@ -20,7 +20,7 @@ Copy `sap.template.json` to `sap.json` and enter your configuration.
 Call RFC_PING on SAP remote system to test general functionality.
 
 ```shell script
-docker run sapnwrfc:php-7.4 php test.php
+docker run  --rm -v "$(pwd)":/app --workdir /app sapnwrfc:php-7.4 php test.php
 ```
 
 ## Build other PHP 7.x and 8.x based images
