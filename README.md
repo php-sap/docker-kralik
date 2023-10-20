@@ -2,14 +2,12 @@
 
 This image compiles [Gregor Kraliks `sapnwrfc` PHP module][kralik] for PHP 7.x and 8.x.
 
-The official PHP 7.x and 8.x Debian based CLI images are being used.
-
 ## Usage
 
 **First you need to [download the SAP Netweaver][sapnwrfcsdk] RFC SDK 7.50 for
 Linux and save it into this directory as `sapnwrfc-sdk-7.50.tar.gz`.**
 
-Build default docker image
+Build default docker image based on `php:7.4-cli-buster`.
 
 ```shell script
 docker build --pull --tag sapnwrfc:php-7.4 .
@@ -26,13 +24,13 @@ docker run  --rm -v "$(pwd)":/app --workdir /app sapnwrfc:php-7.4 php test.php
 ## Build other PHP 7.x and 8.x based images
 
 ```shell script
-docker build --pull --file Dockerfile-7.0 --tag sapnwrfc:php-7.0 .
-docker build --pull --file Dockerfile-7.1 --tag sapnwrfc:php-7.1 .
-docker build --pull --file Dockerfile-7.2 --tag sapnwrfc:php-7.2 .
-docker build --pull --file Dockerfile-7.3 --tag sapnwrfc:php-7.3 .
-docker build --pull --file Dockerfile-7.4 --tag sapnwrfc:php-7.4 .
-docker build --pull --file Dockerfile-8.1 --tag sapnwrfc:php-8.1 .
-docker build --pull --file Dockerfile-8.2 --tag sapnwrfc:php-8.2 .
+docker build --pull --build-arg PHP_VERSION=7.0-cli --tag sapnwrfc:php-7.0 .
+docker build --pull --build-arg PHP_VERSION=7.1-cli --tag sapnwrfc:php-7.1 .
+docker build --pull --build-arg PHP_VERSION=7.2-cli --tag sapnwrfc:php-7.2 .
+docker build --pull --build-arg PHP_VERSION=7.3-cli --tag sapnwrfc:php-7.3 .
+docker build --pull --build-arg PHP_VERSION=7.4-cli --tag sapnwrfc:php-7.4 .
+docker build --pull --build-arg PHP_VERSION=8.1-cli --tag sapnwrfc:php-8.1 .
+docker build --pull --build-arg PHP_VERSION=8.2-cli --tag sapnwrfc:php-8.2 .
 ```
 
 ## Annotations
