@@ -1,15 +1,15 @@
-# PHP 7.x docker image for SAP Netweaver RFC
+# PHP docker image for SAP Netweaver RFC
 
-This image compiles [Gregor Kraliks `sapnwrfc` PHP module][kralik] for PHP 7.x.
+This image compiles [Gregor Kraliks `sapnwrfc` PHP module][kralik] for PHP 7.x and 8.x.
 
-The official PHP 7.x Debian based CLI images are being used.
+The official PHP 7.x and 8.x Debian based CLI images are being used.
 
 ## Usage
 
 **First you need to [download the SAP Netweaver][sapnwrfcsdk] RFC SDK 7.50 for
 Linux and save it into this directory as `sapnwrfc-sdk-7.50.tar.gz`.**
 
-Build docker image
+Build default docker image
 
 ```shell script
 docker build --pull --tag sapnwrfc:php-7.4 .
@@ -23,7 +23,7 @@ Call RFC_PING on SAP remote system to test general functionality.
 docker run sapnwrfc:php-7.4 php test.php
 ```
 
-## Build other PHP 7.x based images
+## Build other PHP 7.x and 8.x based images
 
 ```shell script
 docker build --pull --file Dockerfile-7.0 --tag sapnwrfc:php-7.0 .
@@ -31,7 +31,13 @@ docker build --pull --file Dockerfile-7.1 --tag sapnwrfc:php-7.1 .
 docker build --pull --file Dockerfile-7.2 --tag sapnwrfc:php-7.2 .
 docker build --pull --file Dockerfile-7.3 --tag sapnwrfc:php-7.3 .
 docker build --pull --file Dockerfile-7.4 --tag sapnwrfc:php-7.4 .
+docker build --pull --file Dockerfile-8.1 --tag sapnwrfc:php-8.1 .
+docker build --pull --file Dockerfile-8.2 --tag sapnwrfc:php-8.2 .
 ```
+
+## Annotations
+
+Starting with PHP 8.2 the `sapnwrfc` PHP module is causing deprecation warnings.
 
 ## License
 
