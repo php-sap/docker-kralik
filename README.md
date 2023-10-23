@@ -43,7 +43,7 @@ docker run --rm -v "$(pwd)":/app --workdir /app sapnwrfc2:php-8.2 php test.php
 
 ## Annotations
 
-Starting with PHP 8.2 the `sapnwrfc` PHP module is causing deprecation warnings.
+Starting with PHP 8.2 the `sapnwrfc` PHP module 1.4.0 is causing deprecation warnings.
 
 ## License
 
