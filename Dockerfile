@@ -1,11 +1,11 @@
-ARG PHP_VERSION=7.4-cli-buster
+ARG PHP_VERSION=8.1-cli-bookworm
 FROM php:${PHP_VERSION}
 
 # Add and extract SAP Netweaver RFC SDK.
 ADD sapnwrfc-sdk-7.50.tar.gz /usr/sap/nwrfcsdk/
 
 # Version of Gregor Kraliks SAP Netweaver RFC module source code for PHP 7
-ARG SAPNWRFC_VERSION=1.4.0
+ARG SAPNWRFC_VERSION=2.1.0
 
 RUN set -xe; \
     docker-php-source extract; \
@@ -29,5 +29,5 @@ RUN set -xe; \
     docker-php-source delete; \
     # Enable freshly compiled SAP Netweaver RFC module.
     # How to enable PHP modules depends on your *nix flavor.
-    # The official PHP 7 docker images do it this way.
+    # The official PHP docker images do it this way.
     docker-php-ext-enable sapnwrfc;

@@ -1,49 +1,36 @@
 # PHP docker image for SAP Netweaver RFC
 
-This image compiles [Gregor Kraliks `sapnwrfc` PHP module][kralik] for PHP 7.x and 8.x.
+This image compiles [Gregor Kraliks `sapnwrfc` PHP module][kralik] for PHP 8.x.
 
 ## Usage
 
 **First you need to [download the SAP Netweaver][sapnwrfcsdk] RFC SDK 7.50 for
 Linux and save it into this directory as `sapnwrfc-sdk-7.50.tar.gz`.**
 
-Build default docker image based on `php:7.4-cli-buster`.
+Build default docker image based on `php:8.1-cli-bookworm`.
 
 ```shell script
-docker build --pull --tag sapnwrfc:php-7.4 .
+docker build --pull --tag sapnwrfc:php-8.1 .
 ```
 
 Copy `sap.template.json` to `sap.json` and enter your configuration.
 
-Call RFC_PING on SAP remote system to test general functionality.
+Call RFC_PING on SAP remote system to test general functionality:
 
 ```shell script
-docker run --rm -v "$(pwd)":/app --workdir /app sapnwrfc:php-7.4 php test.php
+docker run --rm -v "$(pwd)":/app --workdir /app sapnwrfc:php-8.1 php test.php
 ```
 
-## Build other PHP 7.x and 8.x based images
+## Build other PHP 8.x based images
+
+The [Dockerfile] allows you to choose the PHP version and the version of the SAPNWRFC module.
+
+* `PHP_VERSION` - the [official PHP docker image tag]. Default: `php:8.1-cli-bookworm`
+* `SAPNWRFC_VERSION` - a [version tag from Gregor Kraliks `sapnwrfc` PHP module]. Default: `2.1.0`
 
 ```shell script
-docker build --pull --build-arg PHP_VERSION=7.0-cli --tag sapnwrfc:php-7.0 .
-docker build --pull --build-arg PHP_VERSION=7.1-cli --tag sapnwrfc:php-7.1 .
-docker build --pull --build-arg PHP_VERSION=7.2-cli --tag sapnwrfc:php-7.2 .
-docker build --pull --build-arg PHP_VERSION=7.3-cli --tag sapnwrfc:php-7.3 .
-docker build --pull --build-arg PHP_VERSION=7.4-cli --tag sapnwrfc:php-7.4 .
-docker build --pull --build-arg PHP_VERSION=8.1-cli --tag sapnwrfc:php-8.1 .
-docker build --pull --build-arg PHP_VERSION=8.2-cli --tag sapnwrfc:php-8.2 .
-docker build --pull --build-arg PHP_VERSION=8.1-cli --build-arg SAPNWRFC_VERSION=2.0.0-beta3 --tag sapnwrfc2:php-8.1 .
-docker build --pull --build-arg PHP_VERSION=8.2-cli --build-arg SAPNWRFC_VERSION=2.0.0-beta3 --tag sapnwrfc2:php-8.2 .
+docker build --pull --build-arg PHP_VERSION=8.1-cli --build-arg SAPNWRFC_VERSION=2.1.0 --tag sapnwrfc:php-8.1 .
 ```
-
-Example call for version 2 module:
-
-```shell
-docker run --rm -v "$(pwd)":/app --workdir /app sapnwrfc2:php-8.2 php test.php
-```
-
-## Annotations
-
-Starting with PHP 8.2 the `sapnwrfc` PHP module 1.4.0 is causing deprecation warnings.
 
 ## License
 
@@ -78,3 +65,6 @@ other countries.
 
 [kralik]: https://github.com/gkralik/php7-sapnwrfc "SAP NW RFC SDK extension for PHP7"
 [sapnwrfcsdk]: https://gkralik.github.io/php7-sapnwrfc/installation.html#download-the-sap-nw-rfc-library "Download SAP Netweaver RFC SDK 7.50"
+[Dockerfile]: Dockerfile
+[official PHP docker image tag]: https://hub.docker.com/_/php/tags
+[version tag from Gregor Kraliks `sapnwrfc` PHP module]: https://github.com/gkralik/php7-sapnwrfc/releases
